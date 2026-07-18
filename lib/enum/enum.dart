@@ -169,8 +169,8 @@ enum DnsMode {
 enum ExternalControllerStatus {
   @JsonValue('')
   close(''),
-  @JsonValue('127.0.0.1:9090')
-  open('127.0.0.1:9090');
+  @JsonValue('0.0.0.0:9090')
+  open('0.0.0.0:9090');
 
   final String value;
 
