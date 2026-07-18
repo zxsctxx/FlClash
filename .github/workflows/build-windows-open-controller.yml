@@ -52,8 +52,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rg -n "0\.0\.0\.0:9090" lib/enum/enum.dart lib/common/constant.dart lib/models/generated/core.g.dart lib/models/generated/clash_config.g.dart
-          if rg -n "127\.0\.0\.1:9090" lib/enum/enum.dart lib/common/constant.dart lib/models/generated/core.g.dart lib/models/generated/clash_config.g.dart; then
+          files=(
+            lib/enum/enum.dart
+            lib/common/constant.dart
+            lib/models/generated/core.g.dart
+            lib/models/generated/clash_config.g.dart
+          )
+          grep -n "0\.0\.0\.0:9090" "${files[@]}"
+          if grep -n "127\.0\.0\.1:9090" "${files[@]}"; then
             echo 'still has loopback hardcode' >&2
             exit 1
           fi
